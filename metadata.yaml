@@ -1,0 +1,7 @@
+homepage: "https://www.attraqt.com/"
+documentation: "https://app.gitbook.com/@attraqt/s/developer-documentation/"
+versions:
+  # Latest version
+  - sha:
+    changeNotes: Initial release.
+  # Older versions
