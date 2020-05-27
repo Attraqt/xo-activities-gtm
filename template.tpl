@@ -302,6 +302,8 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 const createQueue = require("createQueue");
 const injectScript = require("injectScript");
 const log = require("logToConsole");
+const copyFromWindow = require("copyFromWindow");
+const callInWindow = require("callInWindow");
 log('current XO tracking configuration:', data);
 
 // functions
@@ -317,19 +319,21 @@ const objArrayFactory = (array) => {
   return newobj;
 };
 
-
 // set lib URL
 // todo isIe
 const isIe = false;
 
-const url = "https://cdn.attraqt.io/attraqt.activity-";
-const version = "latest";
+const url = "https://cdn.attraqt.io/xo.activity-";
+const version = "1.0.0";
 const compat = isIe ? ".compat.min.js" : ".min.js";
 const finalLibrary = url + version + compat;
 
 // createQueue and set _attraqt
 const pushQ = createQueue("_attraqt");
-pushQ(["init", {trackerKey: data.trackerKey}]);
+
+if (copyFromWindow("xo.activity.isInitialized") !== true) {
+  pushQ(["init", {trackerKey: data.trackerKey}]);
+}
 
 // set user
 if (data.identities && data.identities.length > 0) {
@@ -342,20 +346,25 @@ pushQ(["setUserSegments", data.userSegments ?data.userSegments.split(data.userSe
 pushQ(["setUserTraits", objArrayFactory(data.traits)]);
 
 // set activity
-const targets = objArrayFactory(data.target);
-const metadatas = objArrayFactory(data.metadata);
+const targets = objArrayFactory(data.targets);
+const metadatas = objArrayFactory(data.metadatas);
 
 const activity = {
     action: data.action,
     target: targets,
     sourceId: data.sourceId || "",
-    metadata: metadatas,
+    metadatas: metadatas,
     segments: data.activitySegments ? data.activitySegments.split(data.activitySegmentsSeparator) : [],
 };
 
 pushQ(["send", activity]);
-const copyFromWindow = require("copyFromWindow");
+
 log('Current XO queue: ', copyFromWindow("_attraqt"));
+
+if (copyFromWindow("xo.activity.isInitialized")) {
+  callInWindow("xo.activity.handleQueuedEvents", '');
+}
+
 injectScript(finalLibrary, data.gtmOnSuccess, data.gtmOnFailure, "attraqtLib");
 
 
@@ -416,6 +425,84 @@ ___WEB_PERMISSIONS___
                   {
                     "type": 1,
                     "string": "_attraqt"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "xo.activity.isInitialized"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "xo.activity.handleQueuedEvents"
                   },
                   {
                     "type": 8,
