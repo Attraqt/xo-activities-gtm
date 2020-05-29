@@ -13,6 +13,7 @@ Before getting started, you might want to read our [📌 Getting started](https:
 3. Search for the **XO Activities Tracking template** and add it to your workspace
 
 Your tag configuration form should look like this:
+
 ![XO Activities Tracking GTM template configuration form](https://gblobscdn.gitbook.com/assets/-M29DVDUqAIkkL2XX89z/-M8PIZjRKdcPHDVBynFO/-M8POaNUQ-Lx3EMABJqa/Capture%20d%E2%80%99e%CC%81cran%202020-05-28%20a%CC%80%2010.28.43.png?alt=media&token=a0632441-6bc6-4f56-99d5-e5ed25b75ce3)
 
 Enter your **trackerKey**, and choose a value for the **action** field.
