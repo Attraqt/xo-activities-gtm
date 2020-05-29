@@ -1,6 +1,6 @@
 # XO Activities GTM template
 
-- [Pre-requisites](#prerequisite)
+- [Prerequisite](#prerequisite)
 - [Getting started](#getting-started)
 - [Example configurations](#example-configurations)
 
