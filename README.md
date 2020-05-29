@@ -4,7 +4,7 @@ This GTM template will, in just a few clicks, allow you to collect user activiti
 Before getting started, you might want to read our [📌 Getting started](https://attraqt.gitbook.io/developer-documentation/getting-started).
 
 # Pre-requisites
-- A GTM container configured (A well-maintained data layer will speed-up the process)
+- A GTM container (A well-maintained data layer will speed-up the process)
 - An Attraqt tracker key
 
 # Getting started
