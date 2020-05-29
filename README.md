@@ -1,9 +1,14 @@
 # XO Activities GTM template
+
+- [Pre-requisites](#prerequisite)
+- [Getting started](#getting-started)
+- [Example configurations](#example-configurations)
+
 This GTM template will, in just a few clicks, allow you to collect user activities. 
 
 Before getting started, you might want to read our [📌 Getting started](https://attraqt.gitbook.io/developer-documentation/getting-started).
 
-# Pre-requisites
+# Prerequisite
 - A GTM container (A well-maintained data layer will speed-up the process)
 - An Attraqt tracker key
 
