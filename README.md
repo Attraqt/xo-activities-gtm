@@ -4,7 +4,7 @@
 - [Getting started](#getting-started)
 - [Example configurations](#example-configurations)
 
-This GTM template will, in just a few clicks, allow you to collect user activities. 
+This GTM template will, in just a few clicks, allow you to collect user activities.
 
 Before getting started, you might want to read our [📌 Getting started](https://attraqt.gitbook.io/developer-documentation/getting-started).
 
@@ -13,9 +13,12 @@ Before getting started, you might want to read our [📌 Getting started](https:
 - An Attraqt tracker key
 
 # Getting started
+
+To use the GTM template you need to add it to your workspace.
+You can find the template at [this link](https://tagmanager.google.com/gallery/#/owners/Attraqt/templates/xo-activities-gtm) or in Tag configuration, click on *Discover more tag types in the Community Template Gallery* and search for **XO Activities Tracking**.
+
 1. In the **Tag** section, click on the **New** button
-2. Click on **Tag configuration** and then on **Discover more tag types in the Community Template Gallery**
-3. Search for the **XO Activities Tracking template** and add it to your workspace
+2. Selected the **XO Activities Tracking** template
 
 Your tag configuration form should look like this:
 
@@ -25,7 +28,7 @@ Enter your **trackerKey**, and choose a value for the **action** field.
 
 The **target** is a set of key-values. The key corresponds to the type of object, and the value has the id of the object. You can learn more about targets [here](https://attraqt.gitbook.io/developer-documentation/getting-started#what-is-an-activity).
 
-**Identities** are also key-values. The key corresponds to the identity repository (available in the XO console) and the value to the visitor id. 
+**Identities** are also key-values. The key corresponds to the identity repository (available in the XO console) and the value to the visitor id.
 You can learn more about targets [here](https://attraqt.gitbook.io/developer-documentation/getting-started#managing-identities).
 
 You can add additional information in the **User information** and **Activity information** sections (user segments, traits, etc.).
