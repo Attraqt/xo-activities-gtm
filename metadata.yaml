@@ -1,5 +1,5 @@
 homepage: "https://www.attraqt.com/"
-documentation: "https://app.gitbook.com/@attraqt/s/developer-documentation/"
+documentation: "http://attraqt.gitbook.io/"
 versions:
   # Latest version
   - sha: 4d76f0a661757c1219a8ef262d2f14710e305631
