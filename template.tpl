@@ -44,12 +44,6 @@ ___TEMPLATE_PARAMETERS___
         "valueHint": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
         "valueValidators": [
           {
-            "type": "REGEX",
-            "args": [
-              "/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i"
-            ]
-          },
-          {
             "type": "NON_EMPTY"
           }
         ],
@@ -57,15 +51,12 @@ ___TEMPLATE_PARAMETERS___
         "canBeEmptyString": false
       },
       {
-        "type": "SELECT",
+        "type": "TEXT",
         "name": "action",
         "displayName": "Action",
-        "macrosInSelect": true,
-        "selectItems": [],
         "simpleValueType": true,
         "enablingConditions": [],
-        "help": "The action performed by the user that triggered the event.",
-        "notSetText": "Not set (mandatory)"
+        "help": "The action performed by the user that triggered the event."
       },
       {
         "type": "PARAM_TABLE",
@@ -307,13 +298,19 @@ const callInWindow = require("callInWindow");
 log('current XO tracking configuration:', data);
 
 // functions
+const notNullOrEmpty = (value) => {
+  return value !== "" && value !== null && typeof value !== "undefined";
+};
+
 const objArrayFactory = (array) => {
   const newobj = {};
   if (array && array.length > 0) {
       array.forEach(t => {
 		  const key = t.target || t.metadata || t.identity || t.trait;
           const val = t.targetVal || t.metadataVal || t.identityVal || t.traitVal;
-          newobj[key] = val;
+          if (notNullOrEmpty(key) && notNullOrEmpty(val)) {
+            newobj[key] = val;
+          }
       });
   }
   return newobj;
@@ -324,7 +321,7 @@ const objArrayFactory = (array) => {
 const isIe = false;
 
 const url = "https://cdn.attraqt.io/xo.activity-";
-const version = "1.0.0";
+const version = "1";
 const compat = isIe ? ".compat.min.js" : ".min.js";
 const finalLibrary = url + version + compat;
 
@@ -339,7 +336,9 @@ if (copyFromWindow("xo.activity.isInitialized") !== true) {
 if (data.identities && data.identities.length > 0) {
 	data.identities.forEach(ident => {
       const arr = ["addUserIdentity", ident.identity, ident.identityVal];
-      pushQ(arr);
+      if (notNullOrEmpty(ident.identity) && notNullOrEmpty(ident.identityVal)) {
+        pushQ(arr);
+      }
     });
 }
 pushQ(["setUserSegments", data.userSegments ?data.userSegments.split(data.userSegmentsSeparator) : []]);
@@ -353,7 +352,7 @@ const activity = {
     action: data.action,
     target: targets,
     sourceId: data.sourceId || "",
-    metadatas: metadatas,
+    metadata: metadatas,
     segments: data.activitySegments ? data.activitySegments.split(data.activitySegmentsSeparator) : [],
 };
 
@@ -565,5 +564,3 @@ scenarios: []
 ___NOTES___
 
 Created on 09/04/2020 à 14:36:43
-
-
