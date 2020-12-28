@@ -2,8 +2,10 @@ homepage: "https://www.attraqt.com/"
 documentation: "http://attraqt.gitbook.io/"
 versions:
   # Latest version
+  - sha: 8d1d145ef0c0432b9cd1d7809e5e4803a66ac794
+    changeNotes: Adding region handling.
+  # Older versions
   - sha: 92c64c26cad6cb2487b6bc81703226d6489fd3f9
     changeNotes: Update sdk v1.
-  # Older versions
   - sha: 4d76f0a661757c1219a8ef262d2f14710e305631
     changeNotes: Initial release.
