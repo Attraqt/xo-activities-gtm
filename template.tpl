@@ -52,6 +52,14 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "TEXT",
+        "name": "region",
+        "displayName": "Region (optionnal)",
+        "simpleValueType": true,
+        "help": "The region in which your data is stored: currently only EU is available.",
+        "defaultValue": "eu"
+      },
+      {
+        "type": "TEXT",
         "name": "action",
         "displayName": "Action",
         "simpleValueType": true,
@@ -329,7 +337,11 @@ const finalLibrary = url + version + compat;
 const pushQ = createQueue("_attraqt");
 
 if (copyFromWindow("xo.activity.isInitialized") !== true) {
-  pushQ(["init", {trackerKey: data.trackerKey}]);
+  var initOptions = {trackerKey: data.trackerKey};
+  if (data.region && data.region !== '') {
+    initOptions.region = data.region;
+  }
+  pushQ(["init", initOptions]);
 }
 
 // set user
