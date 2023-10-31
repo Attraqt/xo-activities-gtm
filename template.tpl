@@ -325,11 +325,9 @@ const objArrayFactory = (array) => {
 };
 
 // set lib URL
-// todo isIe
 const isIe = false;
-
 const url = "https://cdn.attraqt.io/xo.activity-";
-const version = "1";
+const version = "1.8.3";
 const compat = isIe ? ".compat.min.js" : ".min.js";
 const finalLibrary = url + version + compat;
 
@@ -368,7 +366,7 @@ const activity = {
     segments: data.activitySegments ? data.activitySegments.split(data.activitySegmentsSeparator) : [],
 };
 
-pushQ(["send", activity]);
+pushQ(["sendAndStoreClusters", activity]);
 
 log('Current XO queue: ', copyFromWindow("_attraqt"));
 
@@ -576,3 +574,5 @@ scenarios: []
 ___NOTES___
 
 Created on 09/04/2020 à 14:36:43
+
+
