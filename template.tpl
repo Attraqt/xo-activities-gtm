@@ -337,7 +337,7 @@ const arrayOrSplit = (input, separator) => {
 // set lib URL
 const isIe = false;
 const url = "https://cdn.attraqt.io/xo.activity-";
-const version = "2";
+const version = "2.0.0";
 const compat = isIe ? ".compat.min.js" : ".min.js";
 const finalLibrary = url + version + compat;
 
